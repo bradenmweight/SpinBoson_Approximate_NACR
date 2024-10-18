@@ -1,6 +1,10 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from glob import glob
+import subprocess as sp
+
+DATA_DIR = "PLOTS"
+sp.call(f"mkdir -p {DATA_DIR}", shell=True)
 
 
 def read_data():
@@ -121,7 +125,7 @@ def main():
             #plt.plot( RMS_VELOC[traj,:500], "--", c=color_list[NDOFi] )
     plt.legend()
     #plt.ylim(0.0)
-    plt.savefig("RMS_EXACT_APPROX.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMS_EXACT_APPROX.jpg",  dpi=300)
     plt.clf()
 
 
@@ -135,7 +139,7 @@ def main():
                 plt.scatter( RMS_EXACT[traj,:500], RMS_APPROX[traj,:500], s=2, c=color_list[NDOFi])#, label=f"DOF={NDOF} (APPROX)")
     plt.legend()
     #plt.ylim(0.0)
-    plt.savefig("RMS_APPROX_vs_EXACT.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMS_APPROX_vs_EXACT.jpg",  dpi=300)
     plt.clf()
 
     for NDOFi,NDOF in enumerate( NDOF_LIST ):
@@ -148,7 +152,7 @@ def main():
                 plt.scatter( RMS_EXACT[traj,:500], RMSD[traj,:500], s=2, c=color_list[NDOFi])#, label=f"DOF={NDOF} (APPROX)")
     plt.legend()
     #plt.ylim(0.0)
-    plt.savefig("RMSD_vs_RMS_EXACT.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMSD_vs_RMS_EXACT.jpg",  dpi=300)
     plt.clf()
 
     for NDOFi,NDOF in enumerate( NDOF_LIST ):
@@ -161,7 +165,7 @@ def main():
                 plt.scatter( RMS_VELOC[traj,:500], RMSD[traj,:500], s=2, c=color_list[NDOFi])#, label=f"DOF={NDOF} (APPROX)")
     plt.legend()
     #plt.ylim(0.0)
-    plt.savefig("RMSD_vs_RMS_VELOC.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMSD_vs_RMS_VELOC.jpg",  dpi=300)
     plt.clf()
 
     for NDOFi,NDOF in enumerate( NDOF_LIST ):
@@ -174,7 +178,7 @@ def main():
                 plt.semilogx( 1/RMS_VELOC[traj,:500], RMSD[traj,:500], "o", ms=2, c=color_list[NDOFi])#, label=f"DOF={NDOF} (APPROX)")
     plt.legend()
     #plt.ylim(0.0)
-    plt.savefig("RMSD_vs_inv_RMS_VELOC.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMSD_vs_inv_RMS_VELOC.jpg",  dpi=300)
     plt.clf()
 
     for NDOFi,NDOF in enumerate( NDOF_LIST ):
@@ -186,7 +190,7 @@ def main():
                 plt.plot( IPR_V[NDOF][traj,:500], RMSD[traj,:500], "o", ms=2, c=color_list[NDOFi])#, label=f"DOF={NDOF} (APPROX)")
     plt.legend()
     #plt.ylim(0.0)
-    plt.savefig("RMSD_vs_IPR_V.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMSD_vs_IPR_V.jpg",  dpi=300)
     plt.clf()
 
 
@@ -203,7 +207,7 @@ def main():
     plt.ylabel("Error Estimate", fontsize=15)
     plt.legend()
     plt.tight_layout()
-    plt.savefig("RMSRMSD_vs_NDOF.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMSRMSD_vs_NDOF.jpg",  dpi=300)
     plt.clf()
 
 
@@ -220,7 +224,7 @@ def main():
     plt.ylabel("Error Estimate / $\\sqrt{N_\\mathrm{DOF}}$", fontsize=15)
     plt.legend()
     plt.tight_layout()
-    plt.savefig("RMSRMSD_vs_NDOF_NORMED.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/RMSRMSD_vs_NDOF_NORMED.jpg",  dpi=300)
     plt.clf()
 
 
@@ -238,7 +242,7 @@ def main():
     plt.ylabel("Angle, $\\theta_\\mathrm{Exact,Approx}$", fontsize=15)
     plt.legend()
     #plt.ylim(0.0)
-    plt.savefig("ANGLE_EXACT_APPROX.jpg",  dpi=300)
+    plt.savefig(f"{DATA_DIR}/ANGLE_EXACT_APPROX.jpg",  dpi=300)
     plt.clf()
 
 
